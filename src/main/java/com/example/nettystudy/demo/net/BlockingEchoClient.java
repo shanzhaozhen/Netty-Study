@@ -31,12 +31,11 @@ public class BlockingEchoClient {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
         ) {
-            String userInput;
-            System.out.print("请输入:");
-            while ((userInput = stdIn.readLine()) != null) {
+            while (true) {
+                System.out.print("请输入:");
+                String userInput = stdIn.readLine();
                 out.println(userInput);
                 System.out.println("echo: " + in.readLine());
-                System.out.print("请输入:");
             }
         } catch (UnknownHostException e) {
             System.err.println("不明主机，主机名为： " + hostName);

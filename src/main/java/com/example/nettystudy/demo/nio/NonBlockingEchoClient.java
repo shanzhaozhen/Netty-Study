@@ -39,8 +39,9 @@ public class NonBlockingEchoClient {
 		ByteBuffer readBuffer = ByteBuffer.allocate(32);
 
 		try (BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
-			String userInput;
-			while ((userInput = stdIn.readLine()) != null) {
+			while (true) {
+				System.out.print("请输入：");
+				String userInput = stdIn.readLine();
 				writeBuffer.put(userInput.getBytes());
 				writeBuffer.flip();
 				writeBuffer.rewind();
