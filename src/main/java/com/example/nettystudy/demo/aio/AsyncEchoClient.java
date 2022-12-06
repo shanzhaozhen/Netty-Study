@@ -1,6 +1,3 @@
-/**
- * Welcome to https://waylau.com
- */
 package com.example.nettystudy.demo.aio;
 
 import java.io.BufferedReader;
@@ -23,13 +20,8 @@ public class AsyncEchoClient {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		if (args.length != 2) {
-			System.err.println("用法: java AsyncEchoClient <host name> <port number>");
-			System.exit(1);
-		}
-
-		String hostName = args[0];
-		int portNumber = Integer.parseInt(args[1]);
+		String hostName = "127.0.0.1";
+		int portNumber = 7;
 
 		AsynchronousSocketChannel socketChannel = null;
 		try {
@@ -44,8 +36,9 @@ public class AsyncEchoClient {
 		ByteBuffer readBuffer = ByteBuffer.allocate(32);
 
 		try (BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
-			String userInput;
-			while ((userInput = stdIn.readLine()) != null) {
+			while (true) {
+				System.out.print("请输入：");
+				String userInput = stdIn.readLine();
 				writeBuffer.put(userInput.getBytes());
 				writeBuffer.flip();
 				writeBuffer.rewind();

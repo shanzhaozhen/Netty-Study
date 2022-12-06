@@ -25,14 +25,7 @@ public class AsyncEchoServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int port;
-
-		try {
-			port = Integer.parseInt(args[0]);
-		} catch (RuntimeException ex) {
-			port = DEFAULT_PORT;
-		}
-
+		int port = DEFAULT_PORT;
 		AsynchronousServerSocketChannel serverChannel;
 		try {
 			serverChannel = AsynchronousServerSocketChannel.open();

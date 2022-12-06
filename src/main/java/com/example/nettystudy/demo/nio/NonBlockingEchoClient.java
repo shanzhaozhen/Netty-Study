@@ -1,6 +1,3 @@
-/**
- * Welcome to https://waylau.com
- */
 package com.example.nettystudy.demo.nio;
 
 import java.io.BufferedReader;
