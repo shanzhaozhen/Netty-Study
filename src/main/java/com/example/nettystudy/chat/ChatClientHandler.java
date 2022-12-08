@@ -56,7 +56,6 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<String> {
                 ch.writeAndFlush("[ 自己 ]发送了消息：" + msg + "\n");
             }
         });
-
     }
 
 }

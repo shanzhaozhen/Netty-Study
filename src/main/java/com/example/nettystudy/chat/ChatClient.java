@@ -7,6 +7,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
+import java.util.Scanner;
+
 /**
  * @Author: shanzhaozhen
  * @Date: 2022-12-06
@@ -35,11 +37,24 @@ public class ChatClient {
                     }
                 });
 
-        ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 9000).sync();
-        // 得到 channel
-        Channel channel = channelFuture.channel();
-        System.out.println("============" + channel.localAddress() + "==============");
-        // 客户端需要输入信息，创建一个扫描器
+        try {
+            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 9000).sync();
+            // 得到 channel
+            Channel channel = channelFuture.channel();
+            System.out.println("============" + channel.localAddress() + "==============");
+            // 客户端需要输入信息，创建一个扫描器
+            Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNextLine()) {
+                String msg = scanner.nextLine();
+                // 通过 channel 发送到服务器
+                channel.writeAndFlush(msg);
+            }
+
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
 
 
